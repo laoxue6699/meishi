@@ -1149,17 +1149,18 @@
         </ul>
       </div>
     </div>
+    <mfooter></mfooter>
+    </div>
   </div>
 </template>
 
 <script>
-  export default {
-    name: "HelloWorld",
-    data() {
-      return {};
+    import Footer from "@/components/Footer.vue";
+    export default {
+    components: {
+        mfooter: Footer
     }
-  };
-
+    };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

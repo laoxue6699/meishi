@@ -13,7 +13,7 @@ module.exports = {
     proxyTable: {
       "/api": {
         // 目标 API 地址
-        target: 'http://123.207.18.143:9099',
+        target: 'http://192.168.1.105:9099',
         // 如果要代理 websockets
         //ws: true,
         // 将主机标头的原点更改为目标URL

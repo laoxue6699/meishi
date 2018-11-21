@@ -1,19 +1,14 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/pages/Home.vue'
-import Menu from '@/pages/Menu.vue'
-import Video from '@/pages/Video.vue'
-import Profile from '@/pages/Profile.vue'
+import Home from '@/pages/Home/Home.vue'
+import Menu from '@/pages/Menu/Menu.vue'
+import Video from '@/pages/Video/Video.vue'
+import Profile from '@/pages/Profile/Profile.vue'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
-    {
-      path: '/home',
-      name: 'Home',
-      component: Home
-    },
     {
       path: '/menu',
       name: 'Menu',
@@ -30,9 +25,13 @@ export default new Router({
       component: Profile
     },
     {
+      path: '/home',
+      name: 'Home',
+      component: Home
+    },
+    {
       path: '/',
-      name: 'root',
-      redirect: '/home',
+      redirect: '/home'
     }
   ]
 })
