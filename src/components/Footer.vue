@@ -5,9 +5,9 @@
 				<span class="mui-icon mui-icon-home"></span>
 				<span class="mui-tab-label">首页</span>
 			</a>
-			<a class="mui-tab-item" :class="{'mui-active': '/menu'===$route.path}" @click="goTo('/menu')">
-				<span class="mui-icon mui-icon mui-icon-compose"></span>
-				<span class="mui-tab-label">菜谱</span>
+			<a class="mui-tab-item" :class="{'mui-active': '/search'===$route.path}" @click="goTo('/search')">
+				<span class="mui-icon mui-icon mui-icon mui-icon-search"></span>
+				<span class="mui-tab-label">搜索</span>
 			</a>
 			<a class="mui-tab-item" :class="{'mui-active': '/video'===$route.path}" @click="goTo('/video')">
 				<span class="mui-icon mui-icon mui-icon-videocam"></span>

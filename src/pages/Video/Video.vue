@@ -1,8 +1,5 @@
 <template>
   <div class="video">
-    <div class="ctopbar ctopbar_noscr" id="ctopbar_noscr">
-      <h1>菜谱视频</h1>
-    </div>
     <div class="new_block">
       <div class="xqlist_item">
         <ul class="new_splist_xqm">
@@ -1149,7 +1146,7 @@
         </ul>
       </div>
     </div>
-    <mfooter></mfooter>
+    <Footer></Footer>
     </div>
   </div>
 </template>
@@ -1158,7 +1155,7 @@
     import Footer from "@/components/Footer.vue";
     export default {
     components: {
-        mfooter: Footer
+        Footer
     }
     };
 </script>

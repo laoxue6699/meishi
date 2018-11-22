@@ -1,8 +1,7 @@
 <template>
     <div>
-        菜谱
+        搜索
         <Footer></Footer>
-    </div>
     </div>
 </template>
 
@@ -16,4 +15,5 @@
 </script>
 
 <style scoped>
+
 </style>
