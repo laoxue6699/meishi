@@ -6,7 +6,7 @@
         <ul class="mui-table-view mui-grid-view mui-grid-9">
           <li v-for="(item,index) in items" :key="item.cid" 
           class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" 
-          @click="gotoCate(item.cid)"><a
+          @click="gotoCate(item)"><a
               href="#">
               <img :src="item.imgUrl" />
               <div class="mui-media-body">{{item.name}}</div>
@@ -45,10 +45,11 @@
     },
     methods: {
       callback() {},
-      gotoCate(id) {
-        console.log(id)
-        let path = '/cate/' + id
-        this.$router.replace(path)
+      gotoCate(item) {
+        let cname = item.name
+        let cid = item.cid
+        let path = '/cate/' + item.id
+        this.$router.replace({path, query: {cname,cid}})
       }
     },
     computed: {

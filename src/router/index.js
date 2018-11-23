@@ -3,7 +3,6 @@ import Router from 'vue-router'
 import Home from '@/pages/Home/Home.vue'
 import Cate from '@/pages/Home/Cate.vue'
 import Steps from '@/pages/Home/Steps.vue'
-import Menu from '@/pages/Menu/Menu.vue'
 import Video from '@/pages/Video/Video.vue'
 import Profile from '@/pages/Profile/Profile.vue'
 import Search from '@/pages/Search.vue'
@@ -17,11 +16,6 @@ export default new Router({
       path: '/search',
       name: 'Search',
       component: Search
-    },
-    {
-      path: '/menu',
-      name: 'Menu',
-      component: Menu
     },
     {
       path: '/video',

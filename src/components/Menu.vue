@@ -1,7 +1,7 @@
 <template>
   <div>
-    <Header class="header" title="分类菜谱">
-      <a class="mui-icon mui-icon-left-nav mui-pull-left" @click="goBack">返回</a>
+    <Header title="分类菜谱">
+      <a class="mui-icon mui-icon-left-nav mui-pull-left" @click="goBack"></a>
     </Header>
 
     <div class="cn_c3">
@@ -181,8 +181,5 @@
     line-height: 20px;
     text-decoration: none;
   }
-.header a {
-    margin-top: 5px;
-    font-size: 16px;
-}
+
 </style>
