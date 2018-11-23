@@ -6,7 +6,7 @@
           controls=""  :src="videoUrl" 
           playsinline="playsinline" webkit-playsinline="webkit-playsinline">
     </video>
-    {{title}}
+    <div class="video-title">{{title}}</div>
   </div>
 </template>
 
@@ -45,5 +45,12 @@ video {
   top: 0;
   left: 0;
   width: 100%;
+}
+.video-title {
+  padding: 5px;
+  position: absolute;
+  top:0;
+  left:0;
+  color:cornflowerblue;
 }
 </style>

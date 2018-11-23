@@ -6,17 +6,17 @@
         <ul class="mui-table-view mui-grid-view mui-grid-9">
           <li v-for="(item,index) in items" :key="item.cid" 
           class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" 
-          @click="gotoCate(item)"><a
-              href="#">
+          @click="gotoCate(item)"><div class="a"
+              >
               <img :src="item.imgUrl" />
               <div class="mui-media-body">{{item.name}}</div>
-            </a></li>
+            </div></li>
         </ul>
       </swiper-slide>
-
-
+      
       <!-- Optional controls -->
       <div class="swiper-pagination" slot="pagination"></div>
+      
     </swiper>
   </div>
 </template>
@@ -34,12 +34,13 @@
           // ...
           pagination: ".swiper-pagination",
           paginationClickable: true,
-          speed: 2000,
+          speed: 1000,
           loop: true,
           observer: true,
           observeParents: true,
           autoplayDisableOnInteraction: false,
-          autoplay: 1500
+          autoplay: true,
+          
         }
       };
     },
@@ -61,7 +62,7 @@
       // current swiper instance
       // 然后你就可以使用当前上下文内的swiper对象去做你想做的事了
       //console.log("this is current swiper instance object", this.swiper);
-      this.swiper.slideTo(3, 1000, false);
+      this.swiper.slideTo(1, 1000, false)
     }
   };
 

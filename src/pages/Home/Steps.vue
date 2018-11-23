@@ -4,7 +4,6 @@
       <a class="mui-icon mui-icon-left-nav mui-pull-left" @click="goBack">返回</a>
     </Header>
     <div class="content">
- 
       <div class="steps-imtro">
         {{this.stepsList.imtro}}
       </div>
@@ -43,7 +42,7 @@
     },
     methods: {
       goBack() {
-        this.$router.push("/home");
+        this.$router.replace({name: 'Home'});
       }
     },
     created() {
