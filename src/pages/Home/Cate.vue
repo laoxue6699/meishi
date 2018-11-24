@@ -53,12 +53,9 @@
       created() {
         let cid = this.$route.query.cid
         let url = '/detail/?cid=' + cid
-        //console.log(cid)
-        //console.log(url)
         this.$axios.get(url).then(
           response => this.cateList = response.data
         )
-        //console.log(this.cateList)
       }
     }
   </script>

@@ -42,7 +42,7 @@
     },
     methods: {
       goBack() {
-        this.$router.replace({name: 'Home'});
+         this.$router.replace('/home')     
       }
     },
     created() {

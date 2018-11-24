@@ -1,170 +1,160 @@
 <template>
-    <div>
-      <div class="input">
-          <input v-model="keyword" placeholder="请输入搜索菜谱内容中包含的关键字" >
-      </div>
-      <div class="cn_c3">
-        <h2>关键词:{{keyword}}</h2>
-  
-        <div class="cpranklist_s1">
-          <div class="cprankitem_s1" v-for="(item,index) in this.searchList" :key="index" 
-          @click="gotoSteps(item.id)">
-            <a>
-              <div class="imgw"><img :src="item.albums[0]" alt="item.title"></div>
-              <div class="info">
-                <strong class="cpn">{{item.title}}</strong>
-                <div class="stars"><i class="i1"></i><i class="i1"></i><i class="i1"></i><i class="ih"></i><i class="i0"></i></div>
-                <div class="others">4711收藏　126277浏览</div>
-              </div>
-            </a>
-          </div>
+  <div>
+    <!-- 搜索框开始 -->
+    <div class="search">
+      <form>
+        <div class="search_input">
+          <input type="text" placeholder="请输入您要搜索的内容..." v-model="keyword">
+          <div class="mui-icon mui-icon-search" @click="resData()"></div>
         </div>
-        <!-- 菜谱列表部分 end-->
-      </div>
-      <Footer/>
+        <div class="right" @click="cancel">取消</div>
+      </form>
     </div>
-    
-  </template>
-  
-  <script>
-import Footer from "@/components/Footer.vue";
-export default {
-  data() {
-    return {
-      keyword: "丝瓜",
-      searchList: []
-    };
-  },
-  methods: {
-    resData() {
-      let url = "/detail";
-      this.$axios.get(url).then(response => (this.searchList = response.data));
+    <!-- 搜索框结束 -->
+
+    <!-- 常用搜索开始 -->
+    <div class="title">常用搜索</div>
+    <div class="common">
+      <div class="key" v-for="item in keywords">
+        <div @click="reqData(item)">{{ item }}</div>
+      </div>
+    </div>
+    <!-- 常用搜索结束 -->
+    <!-- 搜索结果列表开始 -->
+    <div class="lists">
+      <ul class="mui-table-view">
+        <li class="mui-table-view-cell mui-media" v-for="(item,index) in this.searchList" :key="index">
+          <img class="mui-media-object mui-pull-left" :src="item.albums[0]" />
+          <div class="mui-media-body">
+            <h4>{{item.title}}</h4>
+            <p class='mui-ellipsis-2'>{{item.imtro}}</p>
+          </div>
+
+        </li>
+      </ul>
+    </div>
+    <!-- 搜索结果列表结束 -->
+    <Footer />
+  </div>
+
+</template>
+
+<script>
+  import Footer from "@/components/Footer.vue";
+  export default {
+    data() {
+      return {
+        keyword: "",
+        keywords: [
+          "家常菜", "宴请", "早餐", "中餐", "晚餐",
+          "原味", "清淡", "春季", "夏季", "秋季", "冬季",
+          "瘦身", "痛风", "感冒", "宴请", "夏季", "降血压", "解暑", "减肥",
+          "清肺", "祛痘", "脂肪肝", "美容", "锅子",
+          "烧", "炒", "炖", "煮", "汤"
+
+        ],
+        searchList: []
+      };
     },
-    goBack() {
-      this.$router.push("/home");
+    methods: {
+      cancel() {
+        this.keyword = ''
+      },
+      resData() {
+        let url = "/detail?q=" + this.keyword
+        this.keyword = ""
+        this.$axios.get(url).then(response => (this.searchList = response.data))
+      },
+      reqData(k) {
+        let url = "/detail?q=" + k
+        this.keyword = ""
+        this.$axios.get(url).then(response => (this.searchList = response.data))
+      },
+      goBack() {
+        this.$router.push("/home")
+      },
+      gotoSteps(id) {
+        let path = "/steps/" + id
+        this.$router.replace(path)
+      }
     },
-    gotoSteps(id) {
-      let path = "/steps/" + id;
-      this.$router.replace(path);
+    components: {
+      Footer
     }
-  },
-  components: {
-    Footer
-  },
-  created() {
-    let url = "/detail";
-    this.$axios.get(url).then(response => (this.searchList = response.data));
+ 
   }
-};
+
 </script>
-  
-  <style scoped>
-div {
-  display: block;
-}
-.cn_c3 {
-  padding-top: 45px;
-}
-.ci-title2 {
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 30px;
-  padding: 25px 15px 10px;
-  position: relative;
-  color: #000;
-  box-sizing: border-box;
-  position: relative;
-}
-.cn_c3 h2 {
-  font-size: 18px;
-  font-weight: 700;
-  color: #333;
-  padding: 15px 15px 5px;
-  margin-bottom: 10px;
-  line-height: 24px;
-}
-.cprankitem_s1 {
-  padding: 0 15px;
-}
-a {
-  text-decoration: none;
-}
-.cprankitem_s1 a {
-  display: block;
-  border-top: 1px solid #f5f5f5;
-  position: relative;
-  height: 100px;
-  padding: 10px 0px 10px 130px;
-}
-.cprankitem_s1 a .imgw {
-  position: absolute;
-  left: 0px;
-  top: 10px;
-  height: 90px;
-  width: 120px;
-  overflow: hidden;
-  border-radius: 3px;
-}
-.cprankitem_s1 a .imgw img {
-  display: block;
-  width: 100%;
-  left: 50%;
-  top: 50%;
-  position: absolute;
-  transform: translate(-50%, -50%);
-  -webkit-transform: translate(-50%, -50%);
-}
-.cprankitem_s1 a .info {
-  padding-top: 10px;
-}
-.cprankitem_s1 a .info .cpn {
-  font-size: 16px;
-  font-weight: 700;
-  color: #333;
-  line-height: 24px;
-  height: 24px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: block;
-}
-.cprankitem_s1 a .info .stars {
-  display: block;
-  height: 20px;
-  font-size: 0px;
-  padding: 4px 0px 6px;
-}
-.cprankitem_s1 a .info .stars .i1 {
-  background: url(https://s1.st.meishij.net/p2/20180831/20180831142237_413.png)
-    center no-repeat;
-  background-size: 16px 16px;
-}
-.cprankitem_s1 a .info .stars i {
-  display: inline-block;
-  vertical-align: top;
-  height: 16px;
-  width: 16px;
-  margin: 2px 2px 0px 0px;
-}
-.cprankitem_s1 a .info .stars .ih {
-  background: url(https://s1.st.meishij.net/p2/20180831/20180831142237_310.png)
-    center no-repeat;
-  background-size: 16px 16px;
-}
-.cprankitem_s1 a .info .stars .i0 {
-  background: url(https://s1.st.meishij.net/p2/20180831/20180831142237_552.png)
-    center no-repeat;
-  background-size: 16px 16px;
-}
-.cprankitem_s1 a .info .others {
-  margin-top: 10px;
-  font-size: 12px;
-  color: #999;
-  line-height: 20px;
-  text-decoration: none;
-}
-.header a {
-  margin-top: 5px;
-  font-size: 16px;
-}
+
+<style scoped>
+  .search {
+    font-size: 16px;
+  }
+
+  form {
+    padding: 10px;
+    display: flex;
+    height: 52px;
+    width: 100%;
+    margin-left: 2px;
+  }
+
+  .search_input {
+    display: flex;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #9E9C9C;
+  }
+
+  input {
+    width: 270px;
+    height: 30px;
+
+
+  }
+
+  input[type='text'] {
+    border: none;
+  }
+
+  .mui-icon {
+    padding: 2px;
+  }
+
+  .right {
+    display: inline;
+    margin-left: 15px;
+    padding-top: 5px;
+    color: #333;
+  }
+
+  .title {
+    padding: 15px;
+  }
+
+  .common {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 15px;
+    border-top: 1px solid #ccc;
+  }
+
+  .key {
+    width: 54px;
+    line-height: 32px;
+    color: #666;
+  }
+
+  .mui-table-view .mui-media-object {
+    line-height: 120px;
+    max-width: 120px;
+    height: 100px;
+  }
+
+  .lists {
+    padding-bottom: 45px;
+  }
+
 </style>
