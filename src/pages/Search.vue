@@ -23,7 +23,9 @@
     <!-- 搜索结果列表开始 -->
     <div class="lists">
       <ul class="mui-table-view">
-        <li class="mui-table-view-cell mui-media" v-for="(item,index) in this.searchList" :key="index">
+        <li class="mui-table-view-cell mui-media" 
+        v-for="(item,index) in this.searchList" :key="index" 
+        @click="gotoSteps(item.id)">
           <img class="mui-media-object mui-pull-left" :src="item.albums[0]" />
           <div class="mui-media-body">
             <h4>{{item.title}}</h4>
@@ -46,11 +48,10 @@
       return {
         keyword: "",
         keywords: [
-          "家常菜", "宴请", "早餐", "中餐", "晚餐",
-          "原味", "清淡", "春季", "夏季", "秋季", "冬季",
-          "瘦身", "痛风", "感冒", "宴请", "夏季", "降血压", "解暑", "减肥",
-          "清肺", "祛痘", "脂肪肝", "美容", "锅子",
-          "烧", "炒", "炖", "煮", "汤"
+           "早餐", "午餐", "晚餐","原味", "清淡", "春季", "夏季", "秋季", "冬季",
+          "痛风", "感冒",  "降血压", "解暑", "减肥",'明目','补血','养肝',
+          "清肺", "祛痘", "脂肪肝", "美容", '咖喱',
+          "家常菜","宴请", "锅子","烧", "炒", "炖", "煮", "汤"
 
         ],
         searchList: []
@@ -71,11 +72,12 @@
         this.$axios.get(url).then(response => (this.searchList = response.data))
       },
       goBack() {
-        this.$router.push("/home")
+        this.$router.replace("/home")
       },
       gotoSteps(id) {
-        let path = "/steps/" + id
-        this.$router.replace(path)
+        let path = '/steps/' + id
+        let ppath = this.$route.path 
+        this.$router.replace({path,query: {ppath}})
       }
     },
     components: {

@@ -23,7 +23,8 @@
     methods: {
       gotoSteps(id) {
         let path = '/steps/' + id
-        this.$router.replace(path)
+        let ppath = this.$route.path 
+        this.$router.replace({path,query: {ppath}})
       }
     }
   }

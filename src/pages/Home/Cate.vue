@@ -39,7 +39,12 @@
         },
         gotoSteps(id) {
           let path = '/steps/' + id
-          this.$router.replace(path)
+          let ppath = this.$route.path   //本组件路径
+          let cname = this.$route.query.cname //调用本组件需要传入的参数
+          let cid = this.$route.query.cid //调用本组件需要传入的参数
+          //this.$router.replace(path)
+          //调用本组件需要传入的参数： 分类名 cname 和分类标识 cid，调用下层路由返回时，也要带这两个参数。
+          this.$router.replace({path, query: {cname,cid,ppath}})
         }
       },
       computed: {

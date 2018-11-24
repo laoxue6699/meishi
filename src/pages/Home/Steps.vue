@@ -42,7 +42,19 @@
     },
     methods: {
       goBack() {
-         this.$router.replace('/home')     
+        let ppath = this.$route.query.ppath
+        if(ppath === '/home'){
+          this.$router.push('/home')
+        }else if(ppath.substring(0,7) === '/search') {
+          this.$router.replace(ppath)
+        }else{
+          let cname = this.$route.query.cname //调用本组件需要传入的参数
+          let cid = this.$route.query.cid //调用本组件需要传入的参数
+          //this.$router.replace(path)
+          //调用本组件需要传入的参数： 分类名 cname 和分类标识 cid，调用下层路由返回时，也要带这两个参数。
+          this.$router.replace({path:ppath, query: {cname,cid}})
+        }
+             
       }
     },
     created() {
