@@ -54,10 +54,9 @@
       Player1
     },
     created() {
-      let url = '/videos?_page=1&_limit=50'
-      this.$axios.get(url).then(
-        response => this.videoList = response.data
-      )
+      let page= Math.floor(Math.random()*40)
+      this.$axios.get(`/videos?_page=${page}&_limit=50`).then(
+      response => this.videoList = response.data)
     }
   }
 
