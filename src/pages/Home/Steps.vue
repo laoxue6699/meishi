@@ -80,13 +80,12 @@
   }
 
   .steps-imtro{
-      color: #999;
+      color: #666;
       font-size: 16px;
       padding: 15px;
       line-height: 24px;
   }
 .steps-title{
-    color: #666;
     padding-left:15px;
     padding-bottom: 15px;
 }
@@ -94,5 +93,11 @@
     line-height: 42px;
     max-width: 100px;
     height: 80px;
+}
+
+.mui-media-body p {
+  font-size: 16px;
+  color: #333;
+  color:chocolate;
 }
 </style>
