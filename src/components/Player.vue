@@ -1,56 +1,24 @@
 <template>
-  <div>
-    <img :alt="title" :src="imgUrl">
-    </img>
-    <video :poster="imgUrl"
-          controls=""  :src="videoUrl" 
+  <div class="player">
+    <video :poster="player.imgUrl"
+          controls=""  :src="player.videoUrl" 
           playsinline="playsinline" webkit-playsinline="webkit-playsinline">
     </video>
-    <div class="video-title">{{title}}</div>
   </div>
 </template>
 
 <script>
-  export default {
-    props: 
-      {'player' : Object},
-    data () {
-      return {
-       
-      }
-    },
-    computed: {
-      title : function(){
-        return this.player.title
-      },
-      imgUrl: function() {
-        return this.player.imgUrl
-      },
-      videoUrl: function() {
-        return this.player.videoUrl
-      }
-    }
-    
+export default {
+  props: ['player'],
+  data() {
+    return {};
   }
-
+};
 </script>
 
 <style scoped>
-img {
-  overflow: hidden;
-  width: 100%;
-}
+
 video {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
-}
-.video-title {
-  padding: 5px;
-  position: absolute;
-  top:0;
-  left:0;
-  color:cornflowerblue;
 }
 </style>

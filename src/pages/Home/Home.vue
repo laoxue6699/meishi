@@ -1,6 +1,6 @@
 <template>
   <div id='home'>
-    <Player :player="playList"></Player>
+    <Player :player="playList" isflex="true"></Player>
     <Swiper :swipe="swipeList"></Swiper>
     <Likes :like="likeList"></Likes>
     <Footer></Footer>

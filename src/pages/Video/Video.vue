@@ -1,11 +1,12 @@
 <template>
   <div>
-    <Header class="header" title="菜谱视频列表"></Header>
+   <Header class="header" title="菜谱视频"></Header>
     <div class="content">
-      <!-- 搜索结果列表开始 -->
+   
       <div class="lists">
         <ul class="mui-table-view">
-          <li class="mui-table-view-cell mui-media" v-for="(item,index) in this.videoList" :key="index" @click="gotoSteps(item.id)">
+          <li class="mui-table-view-cell mui-media" v-for="(item,index) in this.videoList" :key="index" 
+          @click="goVideoplay(item)">
             <img class="mui-media-object mui-pull-left" :src="item.imgUrl" />
             <div class="mui-media-body">
               <h4>{{item.title}}</h4>
@@ -14,8 +15,9 @@
           </li>
         </ul>
       </div>
-      <!-- 搜索结果列表结束 -->
+     
     </div>
+    <Player1 v-show="isShow" :player="playList" @close="change"></Player1>
     <Footer />
   </div>
 </template>
@@ -23,20 +25,33 @@
 <script>
   import Header from '@/components/Header.vue'
   import Footer from '@/components/Footer.vue'
+  import Player1 from '@/components/Player1.vue'
   export default {
     data() {
       return {
+        isShow: false,
+        playList: [],
         videoList: []
       }
     },
     methods: {
-      goVideoplay () {
-
+      goVideoplay (item) {
+        this.playList = item
+        this.isShow = true
+      },
+      change() {
+        this.isShow = false
       }
     },
+    /* computed : {
+      playList () {
+        return this.videoList[0]
+      }
+    }, */
     components: {
       Header,
-      Footer
+      Footer,
+      Player1
     },
     created() {
       let url = '/videos?_page=1&_limit=50'
