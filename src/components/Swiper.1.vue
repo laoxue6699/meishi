@@ -3,15 +3,15 @@
     <swiper class="swiper" :options="swiperOption" ref="mySwiper" @someSwiperEvent="callback">
       <!-- slides -->
       <swiper-slide v-for="(items,index) in swipe" :key="index">
-        <div class="lists">
-          <div v-for="(item,index) in items" :key="item.cid" 
-          class="swiper-items" 
-          @click="gotoCate(item)">
-          <div class="swiper-item">
+        <ul class="mui-table-view mui-grid-view mui-grid-9">
+          <li v-for="(item,index) in items" :key="item.cid" 
+          class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" 
+          @click="gotoCate(item)"><div class="a"
+              >
               <img :src="item.imgUrl" />
-              <div class="name">{{item.name}}</div>
-            </div></div>
-        </div>
+              <div class="mui-media-body">{{item.name}}</div>
+            </div></li>
+        </ul>
       </swiper-slide>
       
       <!-- Optional controls -->
@@ -69,23 +69,8 @@
 </script>
 
 <style scoped>
-  .lists{
-    padding: 15px;
-  }
-  .lists {
-    list-style: none;
-    display: flex;
-    justify-content:space-between;
-
-  }
-  .swiper-item img {
+  .mui-grid-9 img {
     width: 100%;
-    padding: 5px;
-  }
-
-  .name {
-    text-align: center;
-    font-size: 12px;
   }
 
 </style>
