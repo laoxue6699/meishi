@@ -1,6 +1,6 @@
 <template>
     <div>
-        <header id="header" class="mui-bar" :class="{ 'mui-bar-nav': arrow }">
+        <header id="header"  :class="{ 'mui-bar mui-bar-nav': arrow }">
 			<slot></slot>
 			<h1 class="mui-title">{{title}}</h1>
 		</header>

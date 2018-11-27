@@ -15,7 +15,7 @@
 			</a>
 			<a class="mui-tab-item" :class="{'mui-active': '/profile'===$route.path}" @click="goTo('/profile')">
 				<span class="mui-icon mui-icon-contact"></span>
-				<span class="mui-tab-label">我</span>
+				<span class="mui-tab-label">收藏</span>
 			</a>
 		</div>
     </div>

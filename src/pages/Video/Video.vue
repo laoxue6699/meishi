@@ -1,21 +1,19 @@
 <template>
   <div>
-   <Header class="header" title="菜谱视频"></Header>
-    <div class="content">
-   
-      <div class="lists">
-        <ul class="mui-table-view">
-          <li class="mui-table-view-cell mui-media" v-for="(item,index) in this.videoList" :key="index" 
-          @click="goVideoplay(item)">
-            <img class="mui-media-object mui-pull-left" :src="item.imgUrl" />
-            <div class="mui-media-body">
-              <h4>{{item.title}}</h4>
-              <p class='mui-ellipsis-2'>{{item.titel}}</p>
-            </div>
-          </li>
-        </ul>
-      </div>
+   <header class="header">
+     <div class="left" @click="collect">{{select}}</div>
+     <div v-show="!isCheck"><h3>菜谱视频</h3></div>
+     <div v-show="!isCheck" class="right" @click="loadData">换一批</div>
      
+     </header>
+      <div class="likes">
+      <div class="item" v-for="(item,index) in this.videoList" :key="index" @click="goVideoplay(item)">
+        <img :src="item.imgUrl">
+        <div class="title mui-ellipsis">{{item.title}}</div> 
+        <div v-show="isCheck" @click.stop="check">
+        <input type="checkbox" :value="item" v-model="checkedId">
+        </div>
+      </div>
     </div>
     <Player1 v-show="isShow" :player="playList" @close="change"></Player1>
     <Footer />
@@ -23,70 +21,114 @@
 </template>
 
 <script>
-  import Header from '@/components/Header.vue'
-  import Footer from '@/components/Footer.vue'
-  import Player1 from '@/components/Player1.vue'
-  export default {
-    data() {
-      return {
-        isShow: false,
-        playList: [],
-        videoList: []
+import Header from "@/components/Header.vue";
+import Footer from "@/components/Footer.vue";
+import Player1 from "@/components/Player1.vue";
+export default {
+  data() {
+    return {
+      isShow: false,
+      isCheck: false,
+      select: "收藏",
+      playList: [],
+      videoList: [],
+      checkedId: [],
+      collection: []
+    };
+  },
+  methods: {
+    collect () {
+      if(this.isCheck){
+        this.select = '收藏'
+        for(let i=0; i<this.checkedId.length; i++){
+            this.collection.push(this.checkedId[i].id)
+        }
+        this.collection = Array.from(new Set(this.collection))
+        this.checkedId = []
+        let len = this.collection.length-50 //限制收藏的个数不超过50
+        if(len>0){
+          this.collection.splice(0,len)
+        }
+        window.localStorage.setItem('collection',this.collection)
+      }else{
+        this.select = '确定'
       }
+      this.isCheck = !this.isCheck
     },
-    methods: {
-      goVideoplay (item) {
-        this.playList = item
-        this.isShow = true
-      },
-      change() {
-        this.isShow = false
-      }
+    check(){
+      setTimeout(() => console.log(this.checkedId))
     },
-    /* computed : {
-      playList () {
-        return this.videoList[0]
-      }
-    }, */
-    components: {
-      Header,
-      Footer,
-      Player1
+    loadData() {
+      let page = Math.floor(Math.random() * 100);
+      this.$axios
+        .get(`/videos?_page=${page}&_limit=20`)
+        .then(response => (this.videoList = response.data))
     },
-    created() {
-      let page= Math.floor(Math.random()*100)
-      this.$axios.get(`/videos?_page=${page}&_limit=20`).then(
-      response => this.videoList = response.data)
+    goVideoplay(item) {
+      this.playList = item;
+      this.isShow = true;
+    },
+    change() {
+      this.isShow = false;
     }
-  }
-
+  },
+  components: {
+    Header,
+    Footer,
+    Player1
+  },
+  created() {
+    if(window.localStorage.getItem('collection')){
+      this.collection = window.localStorage.getItem('collection').split(',')
+    }
+    this.loadData()
+  },
+}
 </script>
 
 <style scoped>
-  .mui-table-view .mui-media-object {
-    line-height: 120px;
-    max-width: 120px;
-    height: 80px;
-  }
-
-  .lists {
-    padding-bottom: 45px;
-  }
-  .content {
-    padding-top: 45px;
-  }
-  .content h2 {
-    font-size: 18px;
-    font-weight: 700;
-    color: #333;
-    padding: 15px 15px 5px;
-    margin-bottom: 10px;
-    line-height: 24px;
-  }
-
-  .header a {
-    margin-top: 5px;
-    font-size: 16px;
-  }
+.header {
+  color: #fff;
+  background-color: cornflowerblue;
+  height: 50px;
+  padding: 0 15px;
+  line-height: 50px;
+  display: flex;
+  justify-content: space-between;
+}
+header h3 {
+  font-size: 20px;
+  line-height: 40px;
+}
+.left,.right {
+  color: #eee;
+}
+.likes {
+  clear: both;
+  padding: 20px 15px 45px 15px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.item {
+  margin-bottom: 10px;
+  border: #999 solid 1px;
+  padding-bottom: 10px;
+}
+.item img {
+  position: relative;
+  width: 160px;
+}
+.item .title {
+  display: block;
+  text-align: center;
+  padding: 10px;
+  width: 160px;
+}
+input {
+  margin-left: 10px;
+  width: 16px;
+  height: 16px;
+}
 
 </style>

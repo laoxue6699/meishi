@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="serach">
     <!-- 搜索框开始 -->
     <div class="search">
       <form>
@@ -156,7 +156,7 @@
   }
 
   .lists {
-    padding-bottom: 45px;
+    padding-bottom: 50px;
   }
 
 </style>

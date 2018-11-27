@@ -70,7 +70,7 @@
 
 <style scoped>
   .lists{
-    padding: 15px;
+    padding: 15px 5px;
   }
   .lists {
     list-style: none;
