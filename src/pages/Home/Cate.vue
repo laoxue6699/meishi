@@ -1,8 +1,7 @@
 <template>
   <div>
-    <Header class="header" title="分类菜谱">
-      <a class="mui-icon mui-icon-left-nav mui-pull-left" @click="goBack">返回</a>
-    </Header>
+    <div class="back" @click="goBack">❮返回</div>
+    <div class="header">分类菜谱</div>
 
     <div class="content">
       <h2>{{this.$route.query.cname}}类:</h2>
@@ -73,6 +72,11 @@
 </script>
 
 <style scoped>
+   .back {
+    padding: 10px;
+    color:cornflowerblue;
+    font-size: 16px;
+  }
   .mui-table-view .mui-media-object {
     line-height: 120px;
     max-width: 120px;
@@ -81,9 +85,6 @@
 
   .lists {
     padding-bottom: 45px;
-  }
-  .content {
-    padding-top: 45px;
   }
 
   .content h2 {
@@ -95,9 +96,10 @@
     line-height: 24px;
   }
 
-  .header a {
-    margin-top: 5px;
-    font-size: 16px;
+  .header {
+    margin: 25px;
+    font-size: 24px;
+    text-align: center;
   }
 
 </style>

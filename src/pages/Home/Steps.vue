@@ -1,9 +1,8 @@
 <template>
   <div>
-    <Header class="header" :title="this.stepsList.title">
-      <a class="mui-icon mui-icon-left-nav mui-pull-left" @click="goBack">返回</a>
-    </Header>
-    <div class="content">
+    <div class="back" @click="goBack">❮返回</div>
+    <div class="header">{{this.stepsList.title}}</div>
+    <div class="content">  
       <div class="steps-imtro">
         {{this.stepsList.imtro}}
       </div>
@@ -42,6 +41,7 @@
     },
     methods: {
       goBack() {
+        console.log('返回！')
         let ppath = this.$route.query.ppath
         if(ppath === '/home'){
           this.$router.push('/home')
@@ -70,13 +70,15 @@
 </script>
 
 <style scoped>
-  .header a {
-    margin-top: 5px;
+  .back {
+    padding: 10px;
+    color:cornflowerblue;
     font-size: 16px;
   }
-
-  .content {
-    padding-top: 45px;
+  .header {
+    font-size: 24px;
+    text-align: center;
+    padding: 15px;
   }
 
   .steps-imtro{
