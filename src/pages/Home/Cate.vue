@@ -97,7 +97,7 @@
   }
 
   .header {
-    margin: 25px;
+    margin: px;
     font-size: 24px;
     text-align: center;
   }

@@ -9,7 +9,7 @@
     </video>
     
     </div>
-    <div class="exit" @click="emit">关闭</div>
+    <div class="exit" @click.stop="emit">关闭</div>
     <!-- <div class="collection" @click="collection">
       收藏
     </div> -->
@@ -55,7 +55,7 @@ video {
   width: 36px;
   height: 24px;
   position:fixed;
-  top:40px;
+  top:20px;
   left:20px;
   color: #666;
   z-index: 999;

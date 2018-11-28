@@ -1,13 +1,8 @@
 <template>
   <div>
-    <div class="header">
-      <div class="back" @click="goBack">❮返回</div>
-      <div v-show="isCollect" class="back" @click="collect">收藏</div>
-    </div>
-
-    <div class="content-header">{{this.stepsList.title}}</div>
-
-    <div class="content">
+    <div class="back" @click="goBack">❮返回</div>
+    <div class="header">{{this.stepsList.title}}</div>
+    <div class="content">  
       <div class="steps-imtro">
         {{this.stepsList.imtro}}
       </div>
@@ -30,103 +25,78 @@
         </ul>
       </div>
     </div>
-  </div>
+    </div>
 </template>
 
 <script>
+  import Header from "@/components/Header.vue";
   export default {
     data() {
       return {
-        stepsList: [],
-        collection: [],
-        isCollect: true
+        stepsList: []
       };
+    },
+    components: {
+      Header
     },
     methods: {
       goBack() {
         this.$emit('back')
         let ppath = this.$route.query.ppath
-        if (ppath === '/home') {
+        if(ppath === '/home'){
           this.$router.push('/home')
-        } else if (ppath.substring(0, 7) === '/search') {
+        }else if(ppath.substring(0,7) === '/search') {
           this.$router.replace(ppath)
-        } else {
+        }else{
           let cname = this.$route.query.cname //调用本组件需要传入的参数
           let cid = this.$route.query.cid //调用本组件需要传入的参数
           //this.$router.replace(path)
           //调用本组件需要传入的参数： 分类名 cname 和分类标识 cid，调用下层路由返回时，也要带这两个参数。
-          this.$router.replace({
-            path: ppath,
-            query: {
-              cname,
-              cid
-            }
-          })
+          this.$router.replace({path:ppath, query: {cname,cid}})
         }
-
-      },
-      collect() {
-        if(window.localStorage.getItem("steps")){
-          let steps = window.localStorage.getItem("steps").split(',')
-          if(!steps.includes(this.stepsList.id)){
-            steps.push(this.stepsList.id)
-            window.localStorage.setItem('steps',steps)
-            this.isCollect = false
-          }
-        }else{
-          window.localStorage.setItem('steps',this.stepsList.id)
-        }
-      },
+        
+      }
     },
     created() {
       let id = this.$route.params.id;
       let url = "/detail/" + id;
-      this.$axios.get(url).then(response => (this.stepsList = response.data))
+      this.$axios.get(url).then(response => (this.stepsList = response.data));
     }
   };
 
 </script>
 
 <style scoped>
-  .header {
-    padding: 15px;
-    display: flex;
-    justify-content: space-between;
-  }
-
   .back {
-    color: cornflowerblue;
+    padding: 10px;
+    color:cornflowerblue;
     font-size: 16px;
   }
-
-  .content-header {
+  .header {
     font-size: 24px;
     text-align: center;
-    padding: 15px;
+    padding-bottom: 10px;
   }
 
-  .steps-imtro {
-    color: #666;
-    font-size: 16px;
-    padding: 15px;
-    line-height: 24px;
+  .steps-imtro{
+      color: #666;
+      font-size: 16px;
+      padding: 15px;
+      line-height: 24px;
   }
-
-  .steps-title {
-    padding-left: 15px;
+.steps-title{
+    padding-left:15px;
     padding-bottom: 15px;
-  }
-
+}
   .mui-table-view .mui-media-object {
     line-height: 42px;
     max-width: 100px;
     height: 80px;
-  }
+}
 
-  .mui-media-body p {
-    font-size: 16px;
-    color: #333;
-    color: chocolate;
-  }
-
+.mui-media-body p {
+  font-size: 16px;
+  color: #333;
+  color:chocolate;
+}
 </style>

@@ -91,6 +91,7 @@
 <style scoped>
   .search {
     font-size: 16px;
+    padding-top: 20px;
   }
 
   form {

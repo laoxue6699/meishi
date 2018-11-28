@@ -2,10 +2,10 @@
   <div>
    <header class="header">
      <div class="left" @click="collect">{{select}}</div>
-     <div v-show="!isCheck"><h3>菜谱视频</h3></div>
+     <div v-show="!isCheck"><h3>做菜视频</h3></div>
      <div v-show="!isCheck" class="right" @click="loadData">换一批</div>
      
-     </header>
+    </header>
       <div class="likes">
       <div class="item" v-for="(item,index) in this.videoList" :key="index" @click="goVideoplay(item)">
         <img :src="item.imgUrl">
@@ -37,32 +37,32 @@ export default {
     };
   },
   methods: {
-    collect () {
-      if(this.isCheck){
-        this.select = '收藏'
-        for(let i=0; i<this.checkedId.length; i++){
-            this.collection.push(this.checkedId[i].id)
+    collect() {
+      if (this.isCheck) {
+        this.select = "收藏";
+        for (let i = 0; i < this.checkedId.length; i++) {
+          this.collection.push(this.checkedId[i].id);
         }
-        this.collection = Array.from(new Set(this.collection))
-        this.checkedId = []
-        let len = this.collection.length-50 //限制收藏的个数不超过50
-        if(len>0){
-          this.collection.splice(0,len)
+        this.collection = Array.from(new Set(this.collection));
+        this.checkedId = [];
+        let len = this.collection.length - 50; //限制收藏的个数不超过50
+        if (len > 0) {
+          this.collection.splice(0, len);
         }
-        window.localStorage.setItem('collection',this.collection)
-      }else{
-        this.select = '确定'
+        window.localStorage.setItem("videos", this.collection);
+      } else {
+        this.select = "确定";
       }
-      this.isCheck = !this.isCheck
+      this.isCheck = !this.isCheck;
     },
-    check(){
-      setTimeout(() => console.log(this.checkedId))
+    check() {
+      /* setTimeout(() => console.log(this.checkedId)); */
     },
     loadData() {
       let page = Math.floor(Math.random() * 100);
       this.$axios
         .get(`/videos?_page=${page}&_limit=20`)
-        .then(response => (this.videoList = response.data))
+        .then(response => (this.videoList = response.data));
     },
     goVideoplay(item) {
       this.playList = item;
@@ -78,34 +78,40 @@ export default {
     Player1
   },
   created() {
-    if(window.localStorage.getItem('collection')){
-      this.collection = window.localStorage.getItem('collection').split(',')
+    if (window.localStorage.getItem("videos")) {
+      this.collection = window.localStorage.getItem("videos").split(",");
     }
-    this.loadData()
-  },
-}
+    this.loadData();
+  }
+};
 </script>
 
 <style scoped>
 .header {
-  color: #fff;
-  background-color: cornflowerblue;
+  position: fixed;
+  width: 100%;
+  color:cornflowerblue;
+  background-color: #eee;
   height: 50px;
   padding: 0 15px;
   line-height: 50px;
+  z-index: 99;
   display: flex;
-  justify-content: space-between;
+  justify-content:space-between;
 }
 header h3 {
   font-size: 20px;
   line-height: 40px;
 }
-.left,.right {
-  color: #eee;
+.left,
+.right {
+  color:cornflowerblue;
+  padding: 0 10px;
+  font-size: 14px;
 }
 .likes {
   clear: both;
-  padding: 20px 15px 45px 15px;
+  padding: 70px 15px 60px 15px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -130,5 +136,4 @@ input {
   width: 16px;
   height: 16px;
 }
-
 </style>
