@@ -9,9 +9,9 @@ module.exports = {
 
     // Paths
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
+    assetsPublicPath: './',
     proxyTable: {
-      "/api": {
+      /* "/api": {
         // 目标 API 地址
         target: 'http://192.168.1.105:9099',
         // 如果要代理 websockets
@@ -19,9 +19,9 @@ module.exports = {
         // 将主机标头的原点更改为目标URL
         changeOrigin: true,
         pathRewrite: {
-            "^/api" : ""
+            "^/api" : "/"
         }
-      }
+      } */
     },
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST

@@ -78,10 +78,22 @@
         }
       },
     },
+    mounted() {
+      //是否显示收藏按钮
+      if(window.localStorage.getItem("steps")){
+          let steps = window.localStorage.getItem("steps").split(',')
+          console.log(steps)
+          console.log(this.stepsList.id)
+          console.log(steps.includes(this.stepsList.id))
+          if(steps.includes(this.stepsList.id)){
+            this.isCollect = false
+          }
+      }
+    },
     created() {
       let id = this.$route.params.id;
       let url = "/detail/" + id;
-      this.$axios.get(url).then(response => (this.stepsList = response.data))
+      this.$axios.get(url).then(response => (this.stepsList = response.data));
     }
   };
 

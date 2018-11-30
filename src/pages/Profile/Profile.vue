@@ -10,7 +10,7 @@
     <div v-show="isSelect" class="videos">
 
       <!-- 收藏数据为空开始 -->
-      <div v-show="isNull">还没有收藏数据哦！</div>
+      <div clss="notnull" v-show="isNull">还没有收藏视频数据哦！</div>
       <!-- 收藏数据为空结束 -->
 
       <div class="item" v-for="(item,index) in this.videoList" :key="index" @click="goVideoplay(item)">
@@ -25,6 +25,9 @@
 
     <!-- 图文菜谱开始 -->
     <div v-show="!isSelect" class="steps">
+
+      <div class="notnull" v-show="isNull">还没有收藏图文数据哦！</div>
+
       <ul class="mui-table-view">
         <li class="mui-table-view-cell mui-media" v-for="(item,index) in this.stepsList" :key="index" @click="gotoSteps(item.id)"
           @back="change">
@@ -200,5 +203,7 @@
     padding: 60px 15px 60px 15px;
     background-color: #fff;
   }
-
+  .notnull {
+    padding: 60px;
+  }
 </style>
