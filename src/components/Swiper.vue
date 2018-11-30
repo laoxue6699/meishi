@@ -4,13 +4,20 @@
       <!-- slides -->
       <swiper-slide v-for="(items,index) in swipe" :key="index">
         <div class="lists">
-          <div v-for="(item,index) in items" :key="item.cid" 
-          class="swiper-items" 
-          @click="gotoCate(item)">
-          <div class="swiper-item">
-              <img :src="item.imgUrl" />
-              <div class="name">{{item.name}}</div>
-            </div></div>
+          <div class="swiper-items" >
+          <div class="swiper-item" @click="gotoCate(items[0])">
+              <img :src="items[0].imgUrl" />
+              <div class="name">{{items[0].name}}</div>
+          </div>
+          <div class="swiper-item" @click="gotoCate(items[1])">
+              <img :src="items[1].imgUrl" />
+              <div class="name">{{items[1].name}}</div>
+          </div>
+          <div class="swiper-item" @click="gotoCate(items[2])">
+              <img :src="items[2].imgUrl" />
+              <div class="name">{{items[2].name}}</div>
+          </div>
+          </div>
         </div>
       </swiper-slide>
       
@@ -77,6 +84,10 @@
     display: flex;
     justify-content:space-between;
 
+  }
+  .swiper-items{
+    display: flex;
+    justify-content: space-around;
   }
   .swiper-item img {
     width: 100%;

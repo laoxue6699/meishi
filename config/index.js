@@ -9,7 +9,7 @@ module.exports = {
 
     // Paths
     assetsSubDirectory: 'static',
-    assetsPublicPath: './',
+    assetsPublicPath: '/',
     proxyTable: {
       /* "/api": {
         // 目标 API 地址
