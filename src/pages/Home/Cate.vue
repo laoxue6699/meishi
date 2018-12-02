@@ -1,10 +1,13 @@
 <template>
   <div>
-    <div class="back" @click="goBack">❮返回</div>
-    <div class="header">分类菜谱</div>
-
+    <scroller>
+    <div class="header">
+      <div class="back" @click="goBack">❮返回</div>
+      <div class="header-title">分类菜谱</div>
+      
+    </div>
     <div class="content">
-      <h2>{{this.$route.query.cname}}类:</h2>
+      <div class="category">{{this.$route.query.cname}}类</div>
 
       <!-- 搜索结果列表开始 -->
       <div class="lists">
@@ -20,6 +23,7 @@
       </div>
       <!-- 搜索结果列表结束 -->
     </div>
+    </scroller>
   </div>
 </template>
 
@@ -73,8 +77,9 @@
 
 <style scoped>
    .back {
+     display: block;
+     float: left;
     padding: 10px;
-    color:cornflowerblue;
     font-size: 16px;
   }
   .mui-table-view .mui-media-object {
@@ -96,10 +101,34 @@
     line-height: 24px;
   }
 
+  
+
   .header {
-    margin: px;
-    font-size: 24px;
+    width: 100%;
+    position: fixed;
+    top:0;
+    left:0;
+    height: 50px;
+    z-index: 99;
+    background-color: cornflowerblue;
+    color: #fff;
+  }
+
+  .content {
+    padding-top: 60px;
+  }
+
+.header-title {
+   display: block;
+   margin: 0 auto;
+   line-height: 50px;
+    width: 200px;
+    font-size: 20px;
     text-align: center;
+  }
+
+  .category {
+    padding: 15px;
   }
 
 </style>

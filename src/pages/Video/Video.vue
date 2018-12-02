@@ -1,13 +1,14 @@
 <template>
   <div>
+    <scroller>
    <header class="header">
      <div class="left" @click="collect">{{select}}</div>
      <div v-show="!isCheck"><h3>做菜视频</h3></div>
      <div v-show="!isCheck" class="right" @click="loadData">换一批</div>
      
     </header>
-      <div class="likes">
-      <div class="item" v-for="(item,index) in this.videoList" :key="index" @click="goVideoplay(item)">
+      <div class="likes mui-table-view mui-grid-view">
+      <div class="item mui-table-view-cell mui-media mui-col-xs-6" v-for="(item,index) in this.videoList" :key="index" @click="goVideoplay(item)">
         <img :src="item.imgUrl">
         <div class="title mui-ellipsis">{{item.title}}</div> 
         <div v-show="isCheck" @click.stop="check">
@@ -16,6 +17,7 @@
       </div>
     </div>
     <Player1 v-show="isShow" :player="playList" @close="change"></Player1>
+    </scroller>
     <Footer />
   </div>
 </template>
@@ -111,16 +113,12 @@ header h3 {
 }
 .likes {
   clear: both;
-  padding: 70px 15px 60px 15px;
+  padding-top: 60px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 }
-.item {
-  margin-bottom: 10px;
-  border: #999 solid 1px;
-  padding-bottom: 10px;
-}
+
 .item img {
   position: relative;
   width: 160px;
@@ -128,7 +126,7 @@ header h3 {
 .item .title {
   display: block;
   text-align: center;
-  padding: 10px;
+  padding-bottom: 10px;
   width: 160px;
 }
 input {

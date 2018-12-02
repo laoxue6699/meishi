@@ -1,5 +1,6 @@
 <template>
   <div>
+    <scroller>
     <div class="header">
       <div class="back" @click="goBack">❮返回</div>
       <div v-show="isCollect" class="back" @click="collect">收藏</div>
@@ -30,6 +31,7 @@
         </ul>
       </div>
     </div>
+    </scroller>
   </div>
 </template>
 
@@ -101,15 +103,19 @@
 
 <style scoped>
   .header {
+    width: 100%;
     padding: 15px;
     display: flex;
     justify-content: space-between;
+    background-color: cornflowerblue;
+    font-size: 16px;
+    color: #fff;
+    position: fixed;
+    top:0 ;
+    left: 0;
+    z-index: 99;
   }
 
-  .back {
-    color: cornflowerblue;
-    font-size: 16px;
-  }
 
   .content-header {
     font-size: 24px;

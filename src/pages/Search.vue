@@ -1,5 +1,6 @@
 <template>
   <div id="serach">
+    <scroller>
     <!-- 搜索框开始 -->
     <div class="search">
       <form>
@@ -36,6 +37,7 @@
       </ul>
     </div>
     <!-- 搜索结果列表结束 -->
+    </scroller>
     <Footer />
   </div>
 
@@ -137,14 +139,12 @@
   }
 
   .common {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    padding: 15px;
-    border-top: 1px solid #ccc;
+    padding: 0 15px;
   }
 
   .key {
+    display: block;
+    float: left;
     width: 54px;
     line-height: 32px;
     color: #666;
@@ -158,6 +158,7 @@
 
   .lists {
     padding-bottom: 50px;
+    clear: both;
   }
 
 </style>

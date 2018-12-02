@@ -5,15 +5,15 @@
       <swiper-slide v-for="(items,index) in swipe" :key="index">
         <div class="lists">
           <div class="swiper-items" >
-          <div class="swiper-item" @click="gotoCate(items[0])">
+          <div class="swiper-item mui-col-xs-4" @click="gotoCate(items[0])">
               <img :src="items[0].imgUrl" />
               <div class="name">{{items[0].name}}</div>
           </div>
-          <div class="swiper-item" @click="gotoCate(items[1])">
+          <div class="swiper-item mui-col-xs-4" @click="gotoCate(items[1])">
               <img :src="items[1].imgUrl" />
               <div class="name">{{items[1].name}}</div>
           </div>
-          <div class="swiper-item" @click="gotoCate(items[2])">
+          <div class="swiper-item mui-col-xs-4" @click="gotoCate(items[2])">
               <img :src="items[2].imgUrl" />
               <div class="name">{{items[2].name}}</div>
           </div>
@@ -76,10 +76,8 @@
 </script>
 
 <style scoped>
-  .lists{
-    padding: 15px 5px;
-  }
   .lists {
+    padding: 15px 5px;
     list-style: none;
     display: flex;
     justify-content:space-between;

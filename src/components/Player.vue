@@ -3,8 +3,10 @@
     <img :alt="title" :src="imgUrl">
     </img>
     <video :poster="imgUrl"
-          controls=""  :src="videoUrl" 
-          playsinline="playsinline" webkit-playsinline="webkit-playsinline">
+           :src="videoUrl" 
+          playsinline="playsinline" 
+          webkit-playsinline="webkit-playsinline"
+          controls>
     </video>
   </div>
 </template>

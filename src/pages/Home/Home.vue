@@ -1,8 +1,14 @@
 <template>
-  <div id='home'>
-    <Player :player="playList" isflex="true"></Player>
+  <div id='home' >
+    <scroller>
+      <Player :player="playList" isflex="true"></Player>
+   <!--  <div class="header">
+      <img :src="this.likeList[10].albums[0]" />
+      <div class="home-title"><span>保健菜谱</span></div>
+    </div> -->
     <Swiper :swipe="swipeList"></Swiper>
     <Likes :like="likeList"></Likes>
+    </scroller>
     <Footer></Footer>
   </div>
 </template>
@@ -60,5 +66,22 @@
 </script>
 
 <style scoped>
+.header {
+  overflow: hidden;
+  height: 200px;
+  width: 100%;
+}
+.header img {
+  width: 100%;
+}
+
+.home-title {
+  font-size: 48px;
+  color: #fff;
+  display: block;
+  margin-top: -300px;
+  padding-left:100px;
+  z-index: 99
+}
 
 </style>

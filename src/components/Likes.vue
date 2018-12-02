@@ -1,12 +1,14 @@
 <template>
   <div id="likes">
+    
     <header class="header" title="猜您喜欢"><strong>猜您喜欢</strong></header>
-    <div class="likes">
-      <div class="item" v-for="(item,index) in like" :key="index" @click="gotoSteps(item.id)">
+    <div class="mui-table-view mui-grid-view">
+      <div class="item mui-table-view-cell mui-media mui-col-xs-6" v-for="(item,index) in like" :key="index" @click="gotoSteps(item.id)">
         <img :src="item.albums[0]">
-        <div class="title">{{item.title}}</div>
+        <div class="title mui-ellipsis">{{item.title}}</div>
       </div>
     </div>
+
   </div>
 </template>
 
@@ -23,7 +25,6 @@
       }
     }
   }
-
 </script>
 
 <style scoped>
@@ -34,14 +35,8 @@
 .header strong {
   color: #333;
   margin: 0 auto;
+}
 
-}
-.likes {
-  padding: 15px 15px 55px 15px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content:space-around;
-}
 .item img {
   position: relative;
   width: 170px;

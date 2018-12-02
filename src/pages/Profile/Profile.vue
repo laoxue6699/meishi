@@ -1,5 +1,6 @@
 <template>
   <div>
+    <scroller>
     <div class="tab-top">
       <div @click="changeSelect" class="left" :class="{'bl':isSelect}">视频菜谱</div>
       <div @click="changeSelect" class="right" :class="{'bl':!isSelect}">图文菜谱</div>
@@ -42,7 +43,7 @@
     </div>
     <!-- 视频菜谱结束 -->
 
-
+    </scroller>
 
     <Footer />
   </div>

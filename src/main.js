@@ -6,12 +6,19 @@ import router from './router'
 import Axios from 'axios'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
+import VueScroller from 'vue-scroller'
+Vue.use(VueScroller)
+
+import 'babel-polyfill'
+import Es6Promise from 'es6-promise'
+require('es6-promise').polyfill()
+Es6Promise.polyfill()
  
 Vue.use(VueAwesomeSwiper, /* { default global options } */)
 
 Vue.prototype.$axios = Axios
 /* Axios.defaults.baseURL = '/api/' */
-Axios.defaults.baseURL = 'http://192.168.1.105:9099'
+Axios.defaults.baseURL = 'http://106.12.147.48:3000'
 
 Vue.config.productionTip = false
 
