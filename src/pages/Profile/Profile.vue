@@ -20,9 +20,7 @@
       </div>
     </div>
     <!-- 视频菜谱结束 -->
-    <!-- 视频播放开始 -->
-    <Player1 v-show="isShow" :player="playList" @close="change"></Player1>
-    <!-- 视频菜谱结束 -->
+    
 
     <!-- 图文菜谱开始 -->
     <div v-show="!isSelect" class="steps">
@@ -44,6 +42,9 @@
     <!-- 视频菜谱结束 -->
 
     </scroller>
+    <!-- 视频播放开始 -->
+    <Videoplayer v-show="isShow" :player="playList" @close="change"></Videoplayer>
+    <!-- 视频菜谱结束 -->
 
     <Footer />
   </div>
@@ -52,7 +53,7 @@
 <script>
   import Header from "@/components/Header.vue";
   import Footer from "@/components/Footer.vue";
-  import Player1 from "@/components/Player1.vue";
+  import Videoplayer from "@/components/Videoplayer.vue";
   export default {
     data() {
       return {
@@ -91,7 +92,7 @@
     components: {
       Header,
       Footer,
-      Player1
+      Videoplayer
     },
     created() {
       //读取收藏视频id

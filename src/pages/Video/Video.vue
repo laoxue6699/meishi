@@ -16,8 +16,9 @@
         </div>
       </div>
     </div>
-    <Player1 v-show="isShow" :player="playList" @close="change"></Player1>
+    
     </scroller>
+    <Videoplayer v-show="isShow" :player="playList" @close="change"></Videoplayer>
     <Footer />
   </div>
 </template>
@@ -25,7 +26,7 @@
 <script>
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
-import Player1 from "@/components/Player1.vue";
+import Videoplayer from "@/components/Videoplayer.vue";
 export default {
   data() {
     return {
@@ -77,7 +78,7 @@ export default {
   components: {
     Header,
     Footer,
-    Player1
+    Videoplayer
   },
   created() {
     if (window.localStorage.getItem("videos")) {

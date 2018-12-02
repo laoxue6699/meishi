@@ -1,7 +1,7 @@
 <template>
   <div>
-    <img :alt="title" :src="imgUrl">
-    </img>
+    <!-- <img :alt="title" :src="imgUrl">
+    </img> -->
     <video :poster="imgUrl"
            :src="videoUrl" 
           playsinline="playsinline" 
@@ -45,6 +45,7 @@ video {
   top: 0;
   left: 0;
   width: 100%;
+  height: 211px;
 }
 
 </style>

@@ -1,12 +1,12 @@
 <template>
   <div id='home' >
-    <scroller>
-      <Player :player="playList" isflex="true"></Player>
+    <scroller class="scroller">
+      <Player class="player" :player="playList" isflex="true"></Player>
    <!--  <div class="header">
       <img :src="this.likeList[10].albums[0]" />
       <div class="home-title"><span>保健菜谱</span></div>
     </div> -->
-    <Swiper :swipe="swipeList"></Swiper>
+    <Swiper class="swiper" :swipe="swipeList"></Swiper>
     <Likes :like="likeList"></Likes>
     </scroller>
     <Footer></Footer>
@@ -18,12 +18,14 @@
   import Swiper from '@/components/Swiper.vue'
   import Likes from '@/components/Likes.vue'
   import Footer from '@/components/Footer.vue'
+
   export default {
     data () {
       return {
         playList: {},
         swipeList: [],
-        likeList: []
+        likeList: [],
+        isCover: true
       }
     },
     components: {
@@ -53,7 +55,7 @@
         )
 
         this.$axios.get('/sliders').then(
-          response =>  this.swipeList = response.data
+          response => this.swipeList = response.data
         )
 
         let page= Math.floor(Math.random()*14)
@@ -84,4 +86,13 @@
   z-index: 99
 }
 
+.player {
+  width: 100%;
+  height: 211px;
+  background-color: #eee;
+}
+.swiper {
+  width: 100%;
+  height: 178px;
+}
 </style>
